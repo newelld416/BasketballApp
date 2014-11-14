@@ -16,9 +16,10 @@ public class Main extends JFrame{
         content = getContentPane();
         content.setLayout(new BorderLayout());
 
-        content.add(new TeamPanel(getHomePlayers(), getAwayPlayers()), BorderLayout.PAGE_START);
-        content.add(new OffensivePanel(), BorderLayout.LINE_START);
-        content.add(new DefensivePanel(), BorderLayout.LINE_END);
+        TeamPanel teamPanel = new TeamPanel(getHomePlayers(), getAwayPlayers());
+        content.add(teamPanel, BorderLayout.PAGE_START);
+        content.add(new OffensivePanel(teamPanel), BorderLayout.LINE_START);
+        content.add(new DefensivePanel(teamPanel), BorderLayout.LINE_END);
 
         setVisible(true);
     }

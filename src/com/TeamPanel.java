@@ -3,6 +3,8 @@ package com;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -10,11 +12,10 @@ import java.util.ArrayList;
  */
 public class TeamPanel extends JPanel {
 
-    private JPanel homeTeamPanel, awayTeamPanel;
     private ButtonGroup allPlayersButtonGroup = new ButtonGroup();
-    private JLabel awayTeamLabel, homeTeamLabel;
     private ArrayList<Player> homeTeamPlayers, awayTeamPlayers;
     private int width, height;
+    private Player selectedPlayer;
 
     public TeamPanel(ArrayList<Player> pHomeTeamPlayers, ArrayList<Player> pAwayTeamPlayers){
         homeTeamPlayers = pHomeTeamPlayers;
@@ -42,11 +43,40 @@ public class TeamPanel extends JPanel {
         for (Player player : players){
             String buttonLabel = "#" + player.getNumber() + " - " + player.getFirstName() + " " + player.getLastName();
             JRadioButton button = new JRadioButton(buttonLabel);
+            button.addActionListener(new ButtonAction());
             button.setHorizontalAlignment(SwingConstants.CENTER);
             panel.add(button);
             allPlayersButtonGroup.add(button);
         }
 
         this.add(panel, placement);
+    }
+
+    public Player getSelectedPlayer(){
+        return selectedPlayer;
+    }
+
+    class ButtonAction implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JRadioButton button = (JRadioButton) e.getSource();
+            String[] ary = button.getText().split(" ");
+            String fn = ary[2];
+            String ln = ary[3];
+
+            for(Player player: homeTeamPlayers){
+                if (fn.equals(player.getFirstName()) && ln.equals(player.getLastName())){
+                    selectedPlayer = player;
+                    return;
+                }
+            }
+
+            for(Player player: awayTeamPlayers){
+                if (fn.equals(player.getFirstName()) && ln.equals(player.getLastName())){
+                    selectedPlayer = player;
+                    return;
+                }
+            }
+        }
     }
 }
