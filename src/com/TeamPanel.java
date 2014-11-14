@@ -31,15 +31,16 @@ public class TeamPanel extends JPanel {
         createTeamPanel(awayTeamPlayers, BorderLayout.LINE_END, Constants.AWAY_TEAM_LABEL);
     }
 
-    private void createTeamPanel(ArrayList<Player> players, String placement, String teamlabel){
+    private void createTeamPanel(ArrayList<Player> players, String placement, String teamLabel){
         JPanel panel = new JPanel();
-        JLabel team = new JLabel(teamlabel);
+        JLabel team = new JLabel(teamLabel);
         team.setHorizontalAlignment(SwingConstants.CENTER);
         team.setFont(new Font("Verdana", Font.BOLD, 24));
         panel.add(team);
         panel.setPreferredSize(new Dimension(width / 2, height));
         panel.setLayout(new GridLayout(players.size() + 3,1));
 
+        //Add players to buttons
         for (Player player : players){
             String buttonLabel = "#" + player.getNumber() + " - " + player.getFirstName() + " " + player.getLastName();
             JRadioButton button = new JRadioButton(buttonLabel);
@@ -53,6 +54,9 @@ public class TeamPanel extends JPanel {
     }
 
     public Player getSelectedPlayer(){
+        if (selectedPlayer == null){
+            JOptionPane.showMessageDialog(null,"No player selected.","Error Message", JOptionPane.ERROR_MESSAGE);
+        }
         return selectedPlayer;
     }
 

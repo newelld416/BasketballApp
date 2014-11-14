@@ -13,6 +13,19 @@ public class OffensivePanel extends JPanel {
     private JButton one_point_button;
     private JButton two_point_button;
     private JButton three_point_button;
+    private JButton steal_button;
+    private JButton rebound_button;
+
+    private enum ButtonType {
+        OffensiveRebound,
+        DefensiveRebound,
+        Score,
+        Steal,
+        ChargeTaken,
+        PersonaFoul,
+        TurnOver,
+        Assist
+    }
 
     private TeamPanel teamPanel;
     public OffensivePanel(TeamPanel pTeamPanel){
@@ -24,39 +37,64 @@ public class OffensivePanel extends JPanel {
         this.setLayout(new GridLayout(2,3));
 
         one_point_button = new JButton(Constants.ONE_POINT_LABEL);
-        one_point_button.addActionListener(new AddPointsButtonAction(1));
+        one_point_button.addActionListener(new ButtonAction(1, ButtonType.Score));
 
         two_point_button = new JButton(Constants.TWO_POINT_LABEL);
-        two_point_button.addActionListener(new AddPointsButtonAction(2));
+        two_point_button.addActionListener(new ButtonAction(2, ButtonType.Score));
 
         three_point_button = new JButton(Constants.THREE_POINT_LABEL);
-        three_point_button.addActionListener(new AddPointsButtonAction(3));
+        three_point_button.addActionListener(new ButtonAction(3, ButtonType.Score));
 
-        three_point_button = new JButton(Constants.THREE_POINT_LABEL);
-        three_point_button.addActionListener(new AddPointsButtonAction(3));
+        steal_button = new JButton(Constants.STEAL_BUTTON_LABEL);
+        steal_button.addActionListener(new ButtonAction(ButtonType.Steal));
 
-        three_point_button = new JButton(Constants.THREE_POINT_LABEL);
-        three_point_button.addActionListener(new AddPointsButtonAction(3));
-
-        three_point_button = new JButton(Constants.THREE_POINT_LABEL);
-        three_point_button.addActionListener(new AddPointsButtonAction(3));
+        rebound_button = new JButton(Constants.REBOUND_BUTTON_LABEL);
+        rebound_button.addActionListener(new ButtonAction(ButtonType.OffensiveRebound));
 
         this.add(one_point_button);
         this.add(two_point_button);
         this.add(three_point_button);
+        this.add(steal_button);
+        this.add(rebound_button);
     }
 
-    class AddPointsButtonAction implements ActionListener{
+    class ButtonAction implements ActionListener{
         private int points;
+        private String buttonType;
 
-        public AddPointsButtonAction(int pPoints){
+        public ButtonAction(ButtonType pButtonType){
+            buttonType = pButtonType.toString();
+        }
+
+        public ButtonAction(int pPoints, ButtonType pButtonType){
             points = pPoints;
+            buttonType = pButtonType.toString();
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
             Player player = teamPanel.getSelectedPlayer();
+            if (player != null){
+                if (buttonType.equals(ButtonType.Score)){
+                    setPlayerPoints(player, points);
+                } else if (buttonType.equals(ButtonType.Steal)){
+                    setPlayerSteal(player);
+                } else if (buttonType.equals(ButtonType.OffensiveRebound)){
+                    setPlayerOffensiveRebound(player);
+                }
+            }
+        }
+
+        private void setPlayerPoints(Player player, int points){
             player.setTotalPoints(player.getTotalPoints() + points);
+        }
+
+        private void setPlayerSteal(Player player){
+            player.setSteals(player.getSteals() + 1);
+        }
+
+        private void setPlayerOffensiveRebound(Player player){
+            player.setOffensiveRebounds(player.getOffensiveRebounds() + 1);
         }
     }
 }

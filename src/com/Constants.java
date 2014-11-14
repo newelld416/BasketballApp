@@ -13,5 +13,7 @@ public class Constants {
     public static final String ONE_POINT_LABEL = "+1";
     public static final String TWO_POINT_LABEL = "+2";
     public static final String THREE_POINT_LABEL = "+3";
+    public static final String STEAL_BUTTON_LABEL = "Steal";
+    public static final String REBOUND_BUTTON_LABEL = "Rebound";
 
 }
