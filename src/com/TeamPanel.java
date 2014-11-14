@@ -1,7 +1,6 @@
 package com;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,7 +54,7 @@ public class TeamPanel extends JPanel {
 
     public Player getSelectedPlayer(){
         if (selectedPlayer == null){
-            JOptionPane.showMessageDialog(null,"No player selected.","Error Message", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No player selected.", "Error Message", JOptionPane.ERROR_MESSAGE);
         }
         return selectedPlayer;
     }
@@ -65,18 +64,18 @@ public class TeamPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             JRadioButton button = (JRadioButton) e.getSource();
             String[] ary = button.getText().split(" ");
-            String fn = ary[2];
-            String ln = ary[3];
+            String firstName = ary[2];
+            String lastName = ary[3];
 
             for(Player player: homeTeamPlayers){
-                if (fn.equals(player.getFirstName()) && ln.equals(player.getLastName())){
+                if (firstName.equals(player.getFirstName()) && lastName.equals(player.getLastName())){
                     selectedPlayer = player;
                     return;
                 }
             }
 
             for(Player player: awayTeamPlayers){
-                if (fn.equals(player.getFirstName()) && ln.equals(player.getLastName())){
+                if (firstName.equals(player.getFirstName()) && lastName.equals(player.getLastName())){
                     selectedPlayer = player;
                     return;
                 }
