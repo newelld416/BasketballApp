@@ -18,20 +18,13 @@ public class OffensivePanel extends JPanel {
 
     private enum ButtonType {
         OffensiveRebound,
-        DefensiveRebound,
         Score,
-        Steal,
-        ChargeTaken,
-        PersonaFoul,
-        TurnOver,
-        Assist
+        Steal
     }
 
-    private TeamPanel teamPanel;
-    public OffensivePanel(TeamPanel pTeamPanel){
-        teamPanel = pTeamPanel;
+    public OffensivePanel(){
         int width = Constants.WIDTH / 2;
-        int height = (int) (Constants.HEIGHT * .4);
+        int height = (int) (Constants.HEIGHT * .3);
         this.setPreferredSize(new Dimension(width, height));// hardCoded sizing
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new GridLayout(2,3));
@@ -73,28 +66,32 @@ public class OffensivePanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Player player = teamPanel.getSelectedPlayer();
+            Player player = Utility.GetPlayer(Utility.getEngine().getSelectedPlayer());
             if (player != null){
-                if (buttonType.equals(ButtonType.Score)){
-                    setPlayerPoints(player, points);
-                } else if (buttonType.equals(ButtonType.Steal)){
-                    setPlayerSteal(player);
-                } else if (buttonType.equals(ButtonType.OffensiveRebound)){
-                    setPlayerOffensiveRebound(player);
+                if (buttonType == ButtonType.Score.toString()){
+                    player = setPlayerPoints(player, points);
+                } else if (buttonType == ButtonType.Steal.toString()){
+                    player = setPlayerSteal(player);
+                } else if (buttonType == ButtonType.OffensiveRebound.toString()){
+                    player = setPlayerOffensiveRebound(player);
                 }
             }
+            Utility.SavePlayer(player);
         }
 
-        private void setPlayerPoints(Player player, int points){
+        private Player setPlayerPoints(Player player, int points){
             player.setTotalPoints(player.getTotalPoints() + points);
+            return player;
         }
 
-        private void setPlayerSteal(Player player){
+        private Player setPlayerSteal(Player player){
             player.setSteals(player.getSteals() + 1);
+            return player;
         }
 
-        private void setPlayerOffensiveRebound(Player player){
+        private Player setPlayerOffensiveRebound(Player player){
             player.setOffensiveRebounds(player.getOffensiveRebounds() + 1);
+            return player;
         }
     }
 }

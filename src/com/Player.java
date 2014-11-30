@@ -3,7 +3,7 @@ package com;
 /**
  * Created by Daniel on 11/10/2014.
  */
-public class Player {
+public class Player extends Object{
 
     //Player info properties
     private String firstName;
@@ -25,15 +25,15 @@ public class Player {
     private int steals;
     private int fouls;
 
+    public Player(){
+
+    }
+
     public Player(String firstName, String lastName, int number, String teamName){
         this.firstName = firstName;
         this.lastName = lastName;
         this.number = number;
         this.teamName = teamName;
-        resetPlayerStats();
-    }
-
-    private void resetPlayerStats(){
         this.totalPoints = 0;
         this.fieldGoalsAttempted = 0;
         this.fieldGoalsMade = 0;
@@ -46,6 +46,40 @@ public class Player {
         this.assists = 0;
         this.steals = 0;
         this.fouls = 0;
+    }
+
+    public Player(String firstName,
+                  String lastName,
+                  int number,
+                  String teamName,
+                  int totalPoints,
+                  int fieldGoalsAttempted,
+                  int fieldGoalsMade,
+                  int threePointersAttempted,
+                  int threePointersMade,
+                  int freeThrowsAttempted,
+                  int freeThrowsMade,
+                  int offensiveRebounds,
+                  int defensiveRebounds,
+                  int assists,
+                  int steals,
+                  int fouls){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.number = number;
+        this.teamName = teamName;
+        this.totalPoints = totalPoints;
+        this.fieldGoalsAttempted = fieldGoalsAttempted;
+        this.fieldGoalsMade = fieldGoalsMade;
+        this.threePointersAttempted = threePointersAttempted;
+        this.threePointersMade = threePointersMade;
+        this.freeThrowsAttempted = freeThrowsAttempted;
+        this.freeThrowsMade = freeThrowsMade;
+        this.offensiveRebounds = offensiveRebounds;
+        this.defensiveRebounds = defensiveRebounds;
+        this.assists = assists;
+        this.steals = steals;
+        this.fouls = fouls;
     }
 
     public String getFirstName() {

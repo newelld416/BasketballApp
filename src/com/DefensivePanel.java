@@ -8,9 +8,9 @@ import java.awt.*;
  */
 public class DefensivePanel extends JPanel {
 
-    public DefensivePanel(JPanel teamPanel){
+    public DefensivePanel(){
         int width = Constants.WIDTH / 2;
-        int height = (int) (Constants.HEIGHT * .4);
+        int height = (int) (Constants.HEIGHT * .3);
         this.setPreferredSize(new Dimension(width, height));// hardCoded sizing
         this.setMaximumSize(new Dimension(width, height));
         this.setMinimumSize(new Dimension(width, height));

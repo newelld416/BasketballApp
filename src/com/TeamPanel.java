@@ -12,22 +12,17 @@ import java.util.ArrayList;
 public class TeamPanel extends JPanel {
 
     private ButtonGroup allPlayersButtonGroup = new ButtonGroup();
-    private ArrayList<Player> homeTeamPlayers, awayTeamPlayers;
     private int width, height;
-    private Player selectedPlayer;
 
-    public TeamPanel(ArrayList<Player> pHomeTeamPlayers, ArrayList<Player> pAwayTeamPlayers){
-        homeTeamPlayers = pHomeTeamPlayers;
-        awayTeamPlayers = pAwayTeamPlayers;
-
+    public TeamPanel(){
         width = Constants.WIDTH;
-        height = (int) (Constants.HEIGHT * .6);
+        height = (int) (Constants.HEIGHT * .5);
         this.setPreferredSize(new Dimension(width, height));
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        createTeamPanel(homeTeamPlayers,BorderLayout.LINE_START, Constants.HOME_TEAM_LABEL);
-        createTeamPanel(awayTeamPlayers, BorderLayout.LINE_END, Constants.AWAY_TEAM_LABEL);
+        createTeamPanel(Utility.getEngine().getHomePlayers(),BorderLayout.LINE_START, Constants.HOME_TEAM_LABEL);
+        createTeamPanel(Utility.getEngine().getAwayPlayers(), BorderLayout.LINE_END, Constants.AWAY_TEAM_LABEL);
     }
 
     private void createTeamPanel(ArrayList<Player> players, String placement, String teamLabel){
@@ -43,43 +38,36 @@ public class TeamPanel extends JPanel {
         for (Player player : players){
             String buttonLabel = "#" + player.getNumber() + " - " + player.getFirstName() + " " + player.getLastName();
             JRadioButton button = new JRadioButton(buttonLabel);
-            button.addActionListener(new ButtonAction());
+            button.addActionListener(new ButtonAction(player));
             button.setHorizontalAlignment(SwingConstants.CENTER);
             panel.add(button);
             allPlayersButtonGroup.add(button);
+            Utility.SavePlayer(player);
         }
 
         this.add(panel, placement);
     }
 
-    public Player getSelectedPlayer(){
-        if (selectedPlayer == null){
-            JOptionPane.showMessageDialog(null, "No player selected.", "Error Message", JOptionPane.ERROR_MESSAGE);
-        }
-        return selectedPlayer;
-    }
-
     class ButtonAction implements ActionListener {
+        private Player player;
+
+        public ButtonAction (Player pPlayer){
+            this.player = pPlayer;
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            JRadioButton button = (JRadioButton) e.getSource();
-            String[] ary = button.getText().split(" ");
-            String firstName = ary[2];
-            String lastName = ary[3];
+            Engine engine = Utility.getEngine();
+            engine.setSelectedPlayer(getPlayer());
+            Utility.saveEngine(engine);
+        }
 
-            for(Player player: homeTeamPlayers){
-                if (firstName.equals(player.getFirstName()) && lastName.equals(player.getLastName())){
-                    selectedPlayer = player;
-                    return;
-                }
-            }
+        private Player getPlayer() {
+            return player;
+        }
 
-            for(Player player: awayTeamPlayers){
-                if (firstName.equals(player.getFirstName()) && lastName.equals(player.getLastName())){
-                    selectedPlayer = player;
-                    return;
-                }
-            }
+        private void setPlayer(Player player) {
+            this.player = player;
         }
     }
 }

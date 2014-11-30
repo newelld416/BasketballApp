@@ -15,5 +15,7 @@ public class Constants {
     public static final String THREE_POINT_LABEL = "+3";
     public static final String STEAL_BUTTON_LABEL = "Steal";
     public static final String REBOUND_BUTTON_LABEL = "Rebound";
+    public static final String GAME_OVER_LABEL = "Show Box Score";
+    public static final String BOX_SCORE_TITLE = "Box Score";
 
 }
