@@ -24,6 +24,10 @@ public class Player extends Object{
     private int assists;
     private int steals;
     private int fouls;
+    private int turnovers;
+    private int blocks;
+    private int chargesTaken;
+    private int personalFouls;
 
     public Player(){
 
@@ -46,6 +50,10 @@ public class Player extends Object{
         this.assists = 0;
         this.steals = 0;
         this.fouls = 0;
+        this.turnovers = 0;
+        this.blocks = 0;
+        this.chargesTaken = 0;
+        this.personalFouls = 0;
     }
 
     public Player(String firstName,
@@ -63,7 +71,11 @@ public class Player extends Object{
                   int defensiveRebounds,
                   int assists,
                   int steals,
-                  int fouls){
+                  int fouls,
+                  int turnovers,
+                  int blocks,
+                  int chargesTaken,
+                  int personalFouls){
         this.firstName = firstName;
         this.lastName = lastName;
         this.number = number;
@@ -80,6 +92,10 @@ public class Player extends Object{
         this.assists = assists;
         this.steals = steals;
         this.fouls = fouls;
+        this.turnovers = turnovers;
+        this.blocks = blocks;
+        this.chargesTaken = chargesTaken;
+        this.personalFouls = personalFouls;
     }
 
     public String getFirstName() {
@@ -208,5 +224,37 @@ public class Player extends Object{
 
     public void setFouls(int fouls) {
         this.fouls = fouls;
+    }
+
+    public int getTurnovers() {
+        return turnovers;
+    }
+
+    public void setTurnovers(int turnovers) {
+        this.turnovers = turnovers;
+    }
+
+    public int getBlocks() {
+        return blocks;
+    }
+
+    public void setBlocks(int blocks) {
+        this.blocks = blocks;
+    }
+
+    public int getChargesTaken() {
+        return chargesTaken;
+    }
+
+    public void setChargesTaken(int chargesTaken) {
+        this.chargesTaken = chargesTaken;
+    }
+
+    public int getPersonalFouls() {
+        return personalFouls;
+    }
+
+    public void setPersonalFouls(int personalFouls) {
+        this.personalFouls = personalFouls;
     }
 }

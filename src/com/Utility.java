@@ -77,7 +77,7 @@ public class Utility {
     }
 
     private static String getFileName(Player player){
-        return player.getFirstName() + player.getLastName() + player.getNumber() + player.getTeamName();
+        return (player != null) ? player.getFirstName() + player.getLastName() + player.getNumber() + player.getTeamName() : "";
     }
 }
 

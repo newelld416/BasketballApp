@@ -19,7 +19,7 @@ public class TeamPanel extends JPanel {
         height = (int) (Constants.HEIGHT * .5);
         this.setPreferredSize(new Dimension(width, height));
         this.setLayout(new BorderLayout());
-        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBorder(BorderFactory.createRaisedBevelBorder());
 
         createTeamPanel(Utility.getEngine().getHomePlayers(),BorderLayout.LINE_START, Constants.HOME_TEAM_LABEL);
         createTeamPanel(Utility.getEngine().getAwayPlayers(), BorderLayout.LINE_END, Constants.AWAY_TEAM_LABEL);

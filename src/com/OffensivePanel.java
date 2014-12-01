@@ -10,16 +10,14 @@ import java.awt.event.ActionListener;
  */
 public class OffensivePanel extends JPanel {
 
-    private JButton one_point_button;
-    private JButton two_point_button;
-    private JButton three_point_button;
-    private JButton steal_button;
-    private JButton rebound_button;
+    private JButton one_point_button, two_point_button, three_point_button, assist_button,rebound_button, turnover_button;
+
 
     private enum ButtonType {
         OffensiveRebound,
         Score,
-        Steal
+        Assist,
+        Turnover
     }
 
     public OffensivePanel(){
@@ -38,17 +36,21 @@ public class OffensivePanel extends JPanel {
         three_point_button = new JButton(Constants.THREE_POINT_LABEL);
         three_point_button.addActionListener(new ButtonAction(3, ButtonType.Score));
 
-        steal_button = new JButton(Constants.STEAL_BUTTON_LABEL);
-        steal_button.addActionListener(new ButtonAction(ButtonType.Steal));
+        assist_button = new JButton(Constants.ASSIST_BUTTON_LABEL);
+        assist_button.addActionListener(new ButtonAction(ButtonType.Assist));
 
-        rebound_button = new JButton(Constants.REBOUND_BUTTON_LABEL);
+        rebound_button = new JButton(Constants.OFFENSIVE_REBOUND_BUTTON_LABEL);
         rebound_button.addActionListener(new ButtonAction(ButtonType.OffensiveRebound));
+
+        turnover_button = new JButton(Constants.TURNOVER_BUTTON_LABEL);
+        turnover_button.addActionListener(new ButtonAction(ButtonType.Turnover));
 
         this.add(one_point_button);
         this.add(two_point_button);
         this.add(three_point_button);
-        this.add(steal_button);
+        this.add(assist_button);
         this.add(rebound_button);
+        this.add(turnover_button);
     }
 
     class ButtonAction implements ActionListener{
@@ -70,27 +72,44 @@ public class OffensivePanel extends JPanel {
             if (player != null){
                 if (buttonType == ButtonType.Score.toString()){
                     player = setPlayerPoints(player, points);
-                } else if (buttonType == ButtonType.Steal.toString()){
-                    player = setPlayerSteal(player);
+                } else if (buttonType == ButtonType.Assist.toString()){
+                    player = setPlayerAssist(player);
                 } else if (buttonType == ButtonType.OffensiveRebound.toString()){
                     player = setPlayerOffensiveRebound(player);
+                } else if (buttonType == ButtonType.Turnover.toString()){
+                    player = setPlayerTurnover(player);
                 }
             }
             Utility.SavePlayer(player);
         }
 
         private Player setPlayerPoints(Player player, int points){
-            player.setTotalPoints(player.getTotalPoints() + points);
+            boolean shotMade;
+            int response = JOptionPane.showConfirmDialog(null, "Was the shot Made?", "Shot Outcome", JOptionPane.YES_NO_CANCEL_OPTION);
+            if( response == JOptionPane.YES_OPTION) {
+                System.out.println("Yes option");
+                shotMade = true;
+            } else if ( response == JOptionPane.NO_OPTION) {
+                System.out.println("No Option");
+                shotMade = false;
+            } else{
+                shotMade = false;
+            }
             return player;
         }
 
-        private Player setPlayerSteal(Player player){
-            player.setSteals(player.getSteals() + 1);
+        private Player setPlayerAssist(Player player){
+            player.setAssists(player.getAssists() + 1);
             return player;
         }
 
         private Player setPlayerOffensiveRebound(Player player){
             player.setOffensiveRebounds(player.getOffensiveRebounds() + 1);
+            return player;
+        }
+
+        private Player setPlayerTurnover(Player player){
+            player.setTurnovers(player.getTurnovers() + 1);
             return player;
         }
     }
