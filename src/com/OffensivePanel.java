@@ -73,43 +73,41 @@ public class OffensivePanel extends JPanel {
                 if (buttonType == ButtonType.Score.toString()){
                     player = setPlayerPoints(player, points);
                 } else if (buttonType == ButtonType.Assist.toString()){
-                    player = setPlayerAssist(player);
+                    player.setAssists(player.getAssists() + 1);
                 } else if (buttonType == ButtonType.OffensiveRebound.toString()){
-                    player = setPlayerOffensiveRebound(player);
+                    player.setOffensiveRebounds(player.getOffensiveRebounds() + 1);
                 } else if (buttonType == ButtonType.Turnover.toString()){
-                    player = setPlayerTurnover(player);
+                    player.setTurnovers(player.getTurnovers() + 1);
                 }
             }
             Utility.SavePlayer(player);
         }
 
         private Player setPlayerPoints(Player player, int points){
-            boolean shotMade;
             int response = JOptionPane.showConfirmDialog(null, "Was the shot Made?", "Shot Outcome", JOptionPane.YES_NO_CANCEL_OPTION);
-            if( response == JOptionPane.YES_OPTION) {
-                System.out.println("Yes option");
-                shotMade = true;
-            } else if ( response == JOptionPane.NO_OPTION) {
-                System.out.println("No Option");
-                shotMade = false;
-            } else{
-                shotMade = false;
+            if (response == JOptionPane.YES_OPTION || response == JOptionPane.NO_OPTION) {
+                if (points == 1) {
+                    player.setFreeThrowsAttempted(player.getFreeThrowsAttempted() + 1);
+                } else if (points == 2){
+                    player.setFieldGoalsAttempted(player.getFieldGoalsAttempted() + 1);
+                } else {
+                    player.setFieldGoalsAttempted(player.getFieldGoalsAttempted() + 1);
+                    player.setThreePointersAttempted(player.getThreePointersAttempted() + 1);
+                }
+
+                if (response == JOptionPane.YES_OPTION) {
+                    player.setTotalPoints(player.getTotalPoints() + points);
+                    if (points == 1) {
+                        player.setFreeThrowsMade(player.getFreeThrowsMade() + 1);
+                    } else if (points == 2){
+                        player.setFieldGoalsMade(player.getFieldGoalsMade() + 1);
+                    } else {
+                        player.setFieldGoalsMade(player.getFieldGoalsMade() + 1);
+                        player.setThreePointersMade(player.getThreePointersMade() + 1);
+                    }
+                }
             }
-            return player;
-        }
 
-        private Player setPlayerAssist(Player player){
-            player.setAssists(player.getAssists() + 1);
-            return player;
-        }
-
-        private Player setPlayerOffensiveRebound(Player player){
-            player.setOffensiveRebounds(player.getOffensiveRebounds() + 1);
-            return player;
-        }
-
-        private Player setPlayerTurnover(Player player){
-            player.setTurnovers(player.getTurnovers() + 1);
             return player;
         }
     }

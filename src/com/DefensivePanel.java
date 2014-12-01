@@ -15,7 +15,7 @@ public class DefensivePanel extends JPanel {
     private enum ButtonType {
         Steal,
         Block,
-        Rebound,
+        DefensiveRebound,
         ChargeTaken,
         PersonalFoul
     }
@@ -34,7 +34,7 @@ public class DefensivePanel extends JPanel {
         block_button.addActionListener(new ButtonAction(ButtonType.Block));
 
         rebound_button = new JButton(Constants.DEFENSIVE_REBOUND_BUTTON_LABEL);
-        rebound_button.addActionListener(new ButtonAction(ButtonType.Rebound));
+        rebound_button.addActionListener(new ButtonAction(ButtonType.DefensiveRebound));
 
         charge_taken_button = new JButton(Constants.CHARGE_TAKEN_BUTTON_LABEL);
         charge_taken_button.addActionListener(new ButtonAction(ButtonType.ChargeTaken));
@@ -50,7 +50,6 @@ public class DefensivePanel extends JPanel {
     }
 
     class ButtonAction implements ActionListener {
-        private int points;
         private String buttonType;
 
         public ButtonAction(ButtonType pButtonType) {
@@ -62,44 +61,18 @@ public class DefensivePanel extends JPanel {
             Player player = Utility.GetPlayer(Utility.getEngine().getSelectedPlayer());
             if (player != null) {
                 if (buttonType == ButtonType.Steal.toString()) {
-                    player = setPlayerSteals(player);
+                    player.setSteals(player.getSteals() + 1);
                 } else if (buttonType == ButtonType.Block.toString()) {
-                    player = setPlayerBlocks(player);
-                } else if (buttonType == ButtonType.Rebound.toString()) {
-                    player = setPlayerRebounds(player);
+                    player.setBlocks(player.getBlocks() + 1);
+                } else if (buttonType == ButtonType.DefensiveRebound.toString()) {
+                    player.setDefensiveRebounds(player.getDefensiveRebounds() + 1);
                 } else if (buttonType == ButtonType.ChargeTaken.toString()) {
-                    player = setPlayerChargesTaken(player);
+                    player.setChargesTaken(player.getChargesTaken() + 1);
                 } else if (buttonType == ButtonType.PersonalFoul.toString()) {
-                    player = setPlayerPersonalFoul(player);
+                    player.setPersonalFouls(player.getPersonalFouls() + 1);
                 }
             }
             Utility.SavePlayer(player);
         }
-
-        private Player setPlayerSteals(Player player){
-            player.setSteals(player.getSteals() + 1);
-            return player;
-        }
-
-        private Player setPlayerBlocks(Player player){
-            player.setBlocks(player.getBlocks() + 1);
-            return player;
-        }
-
-        private Player setPlayerRebounds(Player player){
-            player.setDefensiveRebounds(player.getDefensiveRebounds() + 1);
-            return player;
-        }
-
-        private Player setPlayerChargesTaken(Player player){
-            player.setChargesTaken(player.getChargesTaken() + 1);
-            return player;
-        }
-
-        private Player setPlayerPersonalFoul(Player player){
-            player.setPersonalFouls(player.getPersonalFouls() + 1);
-            return player;
-        }
-
     }
 }
