@@ -1,0 +1,15 @@
+Al-Farouq,Aminu,7
+J.J.,Barea,5
+Tyson,Chandler,6
+Jae,Crowder,9,
+Monta,Ellis,11
+Raymond,Felton,2
+Devin,Harris,20
+Richard,Jefferson,24
+Ricky,Ledo,1
+Jameer,Nelson,14
+Dirk,Nowitzki,41
+Chandler,Parsons,25
+Greg,Smith,4
+Charlie,Villanueva,3
+Brandan,Wright,34

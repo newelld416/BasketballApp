@@ -8,6 +8,8 @@ import java.util.List;
 public class Main extends JFrame{
 
     private Container content;
+    private static String homeTeamName;
+    private static String awayTeamName;
 
     public Main (){
         setTitle(Constants.TITLE);
@@ -16,7 +18,7 @@ public class Main extends JFrame{
 
         content = getContentPane();
         content.setLayout(new BorderLayout());
-        content.add(new TeamPanel(), BorderLayout.PAGE_START);
+        content.add(new TeamPanel(homeTeamName, awayTeamName), BorderLayout.PAGE_START);
         content.add(new OffensivePanel(), BorderLayout.LINE_START);
         content.add(new DefensivePanel(), BorderLayout.LINE_END);
         content.add(new BoxScore(), BorderLayout.PAGE_END);
@@ -28,13 +30,32 @@ public class Main extends JFrame{
         ArrayList<Player> homePlayers = new ArrayList<Player>();
         ArrayList<Player> awayPlayers = new ArrayList<Player>();
 
-        List<String> homeInfo = Utility.getTeamPlayerInfo("awayTeam");
+        String[] choices = Utility.getTeamInfo();
+        homeTeamName = (String) JOptionPane.showInputDialog(
+                null,
+                "Team Selection",
+                "Please Select the Home Team",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choices,
+                choices[1]);
+
+        awayTeamName = (String) JOptionPane.showInputDialog(
+                null,
+                "Team Selection",
+                "Please Select the Away Team",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choices,
+                choices[1]);
+
+        List<String> homeInfo = Utility.getTeamPlayerInfo(homeTeamName);
         for (String playerInfo : homeInfo){
             String[] playerDetails = playerInfo.split(",");
             homePlayers.add(new Player(playerDetails[0],playerDetails[1], Integer.parseInt(playerDetails[2]), "home"));
         }
 
-        List<String> awayInfo = Utility.getTeamPlayerInfo("homeTeam");
+        List<String> awayInfo = Utility.getTeamPlayerInfo(awayTeamName);
         for (String playerInfo : awayInfo){
             String[] playerDetails = playerInfo.split(",");
             awayPlayers.add(new Player(playerDetails[0],playerDetails[1], Integer.parseInt(playerDetails[2]), "away"));

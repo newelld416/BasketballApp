@@ -1,0 +1,15 @@
+Kyle,Anderson,1
+Jeff,Ayres,11
+Aron,Baynes,16
+Marco,Belinelli,3
+Matt,Boner,15
+Austin,Daye,23
+Boris,Diaw,33
+Tim,Duncan,21
+Manu,Ginobili,20
+Danny,Green,14
+Cory,Joseph,5
+Kawhi,Leonard,2
+Patty,Mills,8
+Tony,Parker,9
+Tiago,Splitter,22

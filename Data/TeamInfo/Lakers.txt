@@ -1,0 +1,15 @@
+Carlos,Boozer,5
+Kobe,Bryant,24
+Jordan,Clarkson,6
+Ed,Davis,21
+Wayne,Ellington,2
+Xavier,Henry,7
+Jordan,Hill,27
+Wesley,Johnson,11
+Ryan,Kelly,4
+Jeremy,Lin,17
+Steve,Nash,10
+Ronnie,Price,9
+Julius,Randle,30
+Robert,Sacre,50
+Nick,Young,50

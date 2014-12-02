@@ -74,12 +74,25 @@ public class Utility {
     public static List<String> getTeamPlayerInfo(String teamName){
         List<String> input = null;
         try {
-            Path path = Paths.get("Data/TeamInfo/" + teamName + "Info.txt");
+            Path path = Paths.get("Data/TeamInfo/" + teamName + ".txt");
             input = Files.readAllLines(path, StandardCharsets.UTF_8);
         } catch (Exception e){
             System.out.println("Exception: " + e.toString());
         }
         return input;
+    }
+
+    public static String[] getTeamInfo(){
+        List<String> input = null;
+        String[] output = null;
+        try {
+            Path path = Paths.get("Data/TeamInfo/Teams.txt");
+            input = Files.readAllLines(path, StandardCharsets.UTF_8);
+            output = input.get(0).split(",");
+        } catch (Exception e){
+            System.out.println("Exception: " + e.toString());
+        }
+        return output;
     }
 
     public static String getSelectedPlayerFileName(){

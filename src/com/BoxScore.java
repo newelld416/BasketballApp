@@ -40,7 +40,7 @@ public class BoxScore  extends JPanel {
                 }
 
                 frame.setTitle(Constants.TITLE);
-                frame.setSize(1500, 400);
+                frame.setSize(1500, 1200);
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 content = frame.getContentPane();
                 content.setLayout(new GridLayout(homePlayers.size() + awayPlayers.size() + 2, 15));
@@ -71,8 +71,8 @@ public class BoxScore  extends JPanel {
         labels.add(new JLabel(Constants.POINTS_LABEL));
 
         for (JLabel label : labels){
-            Font boldFont = new Font(label.getFont().getFontName(), Font.BOLD, label.getFont().getSize() + 3);
-            label.setFont(boldFont);
+            Font boldFont = new Font(label.getFont().getFontName(), Font.BOLD, label.getFont().getSize() + 4);
+            label.setFont(boldFont.deriveFont(boldFont.getStyle() | Font.CENTER_BASELINE));
             label.setHorizontalAlignment(SwingConstants.CENTER);
             label.setToolTipText(getTootTipString(label.getText()));
             frame.add(label);
@@ -101,6 +101,10 @@ public class BoxScore  extends JPanel {
 
             for (JLabel label : labels){
                 label.setHorizontalAlignment(SwingConstants.CENTER);
+                if (label.getText().equals("0") || label.getText().equals("0 - 0")){
+                    label.setText("-");
+                }
+
                 frame.add(label);
             }
         }

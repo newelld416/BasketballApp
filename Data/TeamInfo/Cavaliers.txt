@@ -1,0 +1,15 @@
+Lou,Anderson,89
+Matthew,Dellavedova,8
+Joe,Harris,12
+Brendan,Haywood,33
+Kyrie,Irving,2
+LeBron,James,23
+James,Jones,1
+Alex,Kirk,53
+Kevin,Love,0
+Shawn,Marion,31
+Mike,Miller,18
+A.J.,Price,4
+Tristan,Thompson,13
+Anderson,Varejao,17
+Dion,Waiters,3
