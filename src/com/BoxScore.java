@@ -26,23 +26,24 @@ public class BoxScore  extends JPanel {
             public void actionPerformed(ActionEvent e){
                 Container content;
                 JFrame frame = new JFrame(Constants.BOX_SCORE_TITLE);
-
                 Engine engine = Utility.getEngine();
+                ArrayList<Player> homePlayers = engine.getHomePlayers();
+                ArrayList<Player> awayPlayers = engine.getAwayPlayers();
 
                 frame = addTitleRow(frame);
-                for(Player play : engine.getHomePlayers()){
+                for(Player play : homePlayers){
                     frame = addPlayerInfo(Utility.GetPlayer(play), frame);
                 }
                 frame = addTitleRow(frame);
-                for(Player play : engine.getAwayPlayers()){
+                for(Player play : awayPlayers){
                     frame = addPlayerInfo(Utility.GetPlayer(play), frame);
                 }
 
                 frame.setTitle(Constants.TITLE);
-                frame.setSize(1500, Constants.HEIGHT);
+                frame.setSize(1500, 400);
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 content = frame.getContentPane();
-                content.setLayout(new GridLayout(10, 15));
+                content.setLayout(new GridLayout(homePlayers.size() + awayPlayers.size() + 2, 15));
                 frame.setVisible(true);
             }
 
@@ -73,6 +74,7 @@ public class BoxScore  extends JPanel {
             Font boldFont = new Font(label.getFont().getFontName(), Font.BOLD, label.getFont().getSize() + 3);
             label.setFont(boldFont);
             label.setHorizontalAlignment(SwingConstants.CENTER);
+            label.setToolTipText(getTootTipString(label.getText()));
             frame.add(label);
         }
         return frame;
@@ -103,5 +105,40 @@ public class BoxScore  extends JPanel {
             }
         }
         return frame;
+    }
+
+    private String getTootTipString(String label){
+        if (label.equals(Constants.PLAYER_NAME_LABEL)){
+            return Constants.PLAYER_NAME_LABEL;
+        } else if (label.equals(Constants.NUMBER_LABEL)){
+            return Constants.NUMBER_TOOL_TIP;
+        } else if (label.equals(Constants.FIELD_GOALS_LABEL)){
+            return Constants.FIELD_GOALS_TOOL_TIP;
+        } else if (label.equals(Constants.THREE_POINTER_LABEL)){
+            return Constants.THREE_POINTER_TOOL_TIP;
+        } else if (label.equals(Constants.FREE_THROW_LABEL)){
+            return Constants.FREE_THROW_TOOL_TIP;
+        } else if (label.equals(Constants.OFFENSIVE_REBOUND_LABEL)){
+            return Constants.OFFENSIVE_REBOUND_TOOL_TIP;
+        } else if (label.equals(Constants.DEFENSIVE_REBOUND_LABEL)){
+            return Constants.DEFENSIVE_REBOUND_TOOL_TIP;
+        } else if (label.equals(Constants.TOTAL_REBOUND_LABEL)){
+            return Constants.TOTAL_REBOUND_TOOL_TIP;
+        } else if (label.equals(Constants.ASSIST_LABEL)){
+            return Constants.ASSIST_TOOL_TIP;
+        } else if (label.equals(Constants.STEAL_LABEL)){
+            return Constants.STEAL_TOOL_TIP;
+        } else if (label.equals(Constants.BLOCK_LABEL)){
+            return Constants.BLOCK_TOOL_TIP;
+        } else if (label.equals(Constants.TURN_OVER_LABEL)){
+            return Constants.TURN_OVER_TOOL_TIP;
+        } else if (label.equals(Constants.PERSONAL_FOUL_LABEL)){
+            return Constants.PERSONAL_FOUL_TOOL_TIP;
+        } else if (label.equals(Constants.CHARGE_TAKEN_LABEL)){
+            return Constants.CHARGE_TAKEN_TOOL_TIP;
+        } else if (label.equals(Constants.POINTS_LABEL)){
+            return Constants.POINTS_TOOL_TIP;
+        }
+        return "";
     }
 }

@@ -22,7 +22,7 @@ public class DefensivePanel extends JPanel {
 
     public DefensivePanel(){
         int width = Constants.WIDTH / 2;
-        int height = (int) (Constants.HEIGHT * .2);
+        int height = (int) (Constants.HEIGHT * .1);
         this.setPreferredSize(new Dimension(width, height));// hardCoded sizing
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new GridLayout(2,3));
@@ -71,8 +71,10 @@ public class DefensivePanel extends JPanel {
                 } else if (buttonType == ButtonType.PersonalFoul.toString()) {
                     player.setPersonalFouls(player.getPersonalFouls() + 1);
                 }
+                Utility.SavePlayer(player);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a player.", "Player Selection", JOptionPane.OK_OPTION);
             }
-            Utility.SavePlayer(player);
         }
     }
 }

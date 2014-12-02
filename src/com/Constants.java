@@ -40,4 +40,20 @@ public class Constants {
     public static final String PERSONAL_FOUL_LABEL = "PF";
     public static final String CHARGE_TAKEN_LABEL = "CT";
     public static final String POINTS_LABEL = "PTS";
+
+    public static final String PLAYER_NAME_TOOL_TIP = "Player Name";
+    public static final String NUMBER_TOOL_TIP = "Player Number";
+    public static final String FIELD_GOALS_TOOL_TIP = "Field Goals Made - Field Goals Attempted";
+    public static final String THREE_POINTER_TOOL_TIP = "Three Pointers Made - Three Pointers Attempted";
+    public static final String FREE_THROW_TOOL_TIP = "Free Throws Made - Free Throws Attempted";
+    public static final String OFFENSIVE_REBOUND_TOOL_TIP = "Offensive Rebounds";
+    public static final String DEFENSIVE_REBOUND_TOOL_TIP= "Defensive Rebounds";
+    public static final String TOTAL_REBOUND_TOOL_TIP = "Total Rebounds";
+    public static final String ASSIST_TOOL_TIP = "Assists";
+    public static final String STEAL_TOOL_TIP = "Steals";
+    public static final String BLOCK_TOOL_TIP = "Blocks";
+    public static final String TURN_OVER_TOOL_TIP = "Turnovers";
+    public static final String PERSONAL_FOUL_TOOL_TIP = "Personal Fouls";
+    public static final String CHARGE_TAKEN_TOOL_TIP = "Charges Taken";
+    public static final String POINTS_TOOL_TIP = "Points";
 }

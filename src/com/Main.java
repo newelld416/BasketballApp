@@ -3,6 +3,7 @@ package com;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends JFrame{
 
@@ -10,7 +11,7 @@ public class Main extends JFrame{
 
     public Main (){
         setTitle(Constants.TITLE);
-        setSize((int) (Constants.WIDTH * 1.1) , Constants.HEIGHT);
+        setSize((int) (Constants.WIDTH * 1.02) , Constants.HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         content = getContentPane();
@@ -26,16 +27,18 @@ public class Main extends JFrame{
     public static void main(String[] args) {
         ArrayList<Player> homePlayers = new ArrayList<Player>();
         ArrayList<Player> awayPlayers = new ArrayList<Player>();
-        homePlayers.add(new Player("Daniel", "Newell", 12, "Home"));
-        homePlayers.add(new Player("Vince", "Newell", 11, "Home"));
-        homePlayers.add(new Player("Kevin", "Newell", 43, "Home"));
-        homePlayers.add(new Player("Gina", "Newell", 5, "Home"));
 
+        List<String> homeInfo = Utility.getTeamPlayerInfo("awayTeam");
+        for (String playerInfo : homeInfo){
+            String[] playerDetails = playerInfo.split(",");
+            homePlayers.add(new Player(playerDetails[0],playerDetails[1], Integer.parseInt(playerDetails[2]), "home"));
+        }
 
-        awayPlayers.add(new Player("Jessie", "Smith", 12, "Away"));
-        awayPlayers.add(new Player("Kelsey", "Smith", 11, "Away"));
-        awayPlayers.add(new Player("Steve", "Smith", 5, "Away"));
-        awayPlayers.add(new Player("tyrone", "Smith", 6, "Away"));
+        List<String> awayInfo = Utility.getTeamPlayerInfo("homeTeam");
+        for (String playerInfo : awayInfo){
+            String[] playerDetails = playerInfo.split(",");
+            awayPlayers.add(new Player(playerDetails[0],playerDetails[1], Integer.parseInt(playerDetails[2]), "away"));
+        }
 
         Engine engine = new Engine(homePlayers,awayPlayers);
         Utility.saveEngine(engine);

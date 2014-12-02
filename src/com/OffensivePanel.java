@@ -22,7 +22,7 @@ public class OffensivePanel extends JPanel {
 
     public OffensivePanel(){
         int width = Constants.WIDTH / 2;
-        int height = (int) (Constants.HEIGHT * .2);
+        int height = (int) (Constants.HEIGHT * .1);
         this.setPreferredSize(new Dimension(width, height));// hardCoded sizing
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new GridLayout(2,3));
@@ -81,7 +81,7 @@ public class OffensivePanel extends JPanel {
                 }
                 Utility.SavePlayer(player);
             } else {
-                JOptionPane.showConfirmDialog(null, "Please select a player.", "Player Selection", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(null, "Please select a player.", "Player Selection", JOptionPane.OK_OPTION);
             }
 
         }

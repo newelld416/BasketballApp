@@ -1,0 +1,8 @@
+Daniel,Newell,1
+Kevin,Smith,43
+Jake,Gatsby,32
+Steven,Jackson,10
+Troy,Okafur,22
+Matt,Studebaker,21
+Ben,Tate,33
+Patrick,O'Donnel,55

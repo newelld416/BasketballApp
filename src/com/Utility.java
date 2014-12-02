@@ -3,6 +3,11 @@ package com;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 
 /**
@@ -15,7 +20,7 @@ public class Utility {
     public static void saveEngine(Engine engine){
         if (engine != null) {
             try {
-                mapper.writeValue(new File("PlayerData\\engine.json"), engine);
+                mapper.writeValue(new File("Data\\PlayerData\\engine.json"), engine);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -25,7 +30,7 @@ public class Utility {
     public static Engine getEngine(){
         Engine engine = null;
         try {
-            engine = mapper.readValue(new File("PlayerData\\engine.json"), Engine.class);
+            engine = mapper.readValue(new File("Data\\PlayerData\\engine.json"), Engine.class);
         } catch ( Exception e ) {
             e.printStackTrace();
         }
@@ -35,7 +40,7 @@ public class Utility {
     public static void SavePlayer(Player player){
         if (player != null){
             try {
-                mapper.writeValue(new File("PlayerData\\" + getFileName(player) + ".json"), player);
+                mapper.writeValue(new File("Data\\PlayerData\\" + getFileName(player) + ".json"), player);
             } catch ( Exception e ) {
                 e.printStackTrace();
             }
@@ -46,7 +51,7 @@ public class Utility {
         Player returnPlayer = null;
         if (player != null) {
             try {
-                returnPlayer = mapper.readValue(new File("PlayerData\\" + getFileName(player) + ".json"), Player.class);
+                returnPlayer = mapper.readValue(new File("Data\\PlayerData\\" + getFileName(player) + ".json"), Player.class);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -58,7 +63,7 @@ public class Utility {
         Player returnPlayer = null;
         if (fileName != null && fileName != "") {
             try {
-                returnPlayer = mapper.readValue(new File("PlayerData\\" + fileName + ".json"), Player.class);
+                returnPlayer = mapper.readValue(new File("Data\\PlayerData\\" + fileName + ".json"), Player.class);
             } catch (Exception e) {
                 System.out.println("Error:" + e.toString());
             }
@@ -66,10 +71,21 @@ public class Utility {
         return returnPlayer;
     }
 
+    public static List<String> getTeamPlayerInfo(String teamName){
+        List<String> input = null;
+        try {
+            Path path = Paths.get("Data/TeamInfo/" + teamName + "Info.txt");
+            input = Files.readAllLines(path, StandardCharsets.UTF_8);
+        } catch (Exception e){
+            System.out.println("Exception: " + e.toString());
+        }
+        return input;
+    }
+
     public static String getSelectedPlayerFileName(){
         SelectedPlayer selectedPlayer = null;
         try {
-            selectedPlayer = mapper.readValue(new File("PlayerData\\selectedPlayer.json"), SelectedPlayer.class);
+            selectedPlayer = mapper.readValue(new File("Data\\PlayerData\\selectedPlayer.json"), SelectedPlayer.class);
         } catch ( Exception e ) {
             e.printStackTrace();
         }
@@ -79,7 +95,7 @@ public class Utility {
     public static void saveSelectedPlayerFileName (Player player){
         if (player != null) {
             try {
-                mapper.writeValue(new File("PlayerData\\selectedPlayer.json"), getFileName(player));
+                mapper.writeValue(new File("Data\\PlayerData\\selectedPlayer.json"), getFileName(player));
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -23,11 +23,6 @@ public class TeamPanel extends JPanel {
 
         createTeamPanel(Utility.getEngine().getHomePlayers(),BorderLayout.LINE_START, Constants.HOME_TEAM_LABEL);
         createTeamPanel(Utility.getEngine().getAwayPlayers(), BorderLayout.LINE_END, Constants.AWAY_TEAM_LABEL);
-
-        JButton addPlayerButton = new JButton("Add Player");
-        addPlayerButton.addActionListener(new AddPlayerButtonAction());
-        addPlayerButton.setPreferredSize(new Dimension(width, (int) (Constants.HEIGHT * .05)));
-        this.add(addPlayerButton, BorderLayout.PAGE_END);
     }
 
     private void createTeamPanel(ArrayList<Player> players, String placement, String teamLabel){
@@ -35,6 +30,11 @@ public class TeamPanel extends JPanel {
         JLabel team = new JLabel(teamLabel);
         team.setHorizontalAlignment(SwingConstants.CENTER);
         team.setFont(new Font("Verdana", Font.BOLD, 24));
+        /*JComboBox dropDown = new JComboBox(teams);
+        BasicComboBoxRenderer renderer = new BasicComboBoxRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        dropDown.setRenderer(renderer);
+        dropDown.addActionListener(new DropDownAction(players, panel));*/
         panel.add(team);
         panel.setPreferredSize(new Dimension(width / 2, height));
         panel.setLayout(new GridLayout(players.size() + 3,1));
@@ -76,15 +76,26 @@ public class TeamPanel extends JPanel {
         }
     }
 
-    class AddPlayerButtonAction implements ActionListener {
+    class DropDownAction implements ActionListener {
+        private ArrayList<Player> players;
+        private JPanel panel;
 
-        public AddPlayerButtonAction (){
-
+        public DropDownAction(ArrayList<Player> players, JPanel panel) {
+            this.players = players;
+            this.panel = panel;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            for (Player player : players) {
+                String buttonLabel = "#" + player.getNumber() + " - " + player.getFirstName() + " " + player.getLastName();
+                JRadioButton button = new JRadioButton(buttonLabel);
+                button.addActionListener(new ButtonAction(player));
+                button.setHorizontalAlignment(SwingConstants.CENTER);
+                panel.add(button);
+                allPlayersButtonGroup.add(button);
+                Utility.SavePlayer(player);
+            }
         }
     }
 }
