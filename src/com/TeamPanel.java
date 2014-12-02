@@ -23,6 +23,11 @@ public class TeamPanel extends JPanel {
 
         createTeamPanel(Utility.getEngine().getHomePlayers(),BorderLayout.LINE_START, Constants.HOME_TEAM_LABEL);
         createTeamPanel(Utility.getEngine().getAwayPlayers(), BorderLayout.LINE_END, Constants.AWAY_TEAM_LABEL);
+
+        JButton addPlayerButton = new JButton("Add Player");
+        addPlayerButton.addActionListener(new AddPlayerButtonAction());
+        addPlayerButton.setPreferredSize(new Dimension(width, (int) (Constants.HEIGHT * .05)));
+        this.add(addPlayerButton, BorderLayout.PAGE_END);
     }
 
     private void createTeamPanel(ArrayList<Player> players, String placement, String teamLabel){
@@ -68,6 +73,18 @@ public class TeamPanel extends JPanel {
 
         private void setPlayer(Player player) {
             this.player = player;
+        }
+    }
+
+    class AddPlayerButtonAction implements ActionListener {
+
+        public AddPlayerButtonAction (){
+
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
         }
     }
 }

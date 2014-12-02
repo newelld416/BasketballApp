@@ -24,4 +24,20 @@ public class Constants {
     public static final String GAME_OVER_LABEL = "Show Box Score";
     public static final String BOX_SCORE_TITLE = "Box Score";
 
+    //Box Score Labels
+    public static final String PLAYER_NAME_LABEL = "Player Name";
+    public static final String NUMBER_LABEL = "#";
+    public static final String FIELD_GOALS_LABEL = "FGM - A";
+    public static final String THREE_POINTER_LABEL = "3PM - A";
+    public static final String FREE_THROW_LABEL = "FTM - A";
+    public static final String OFFENSIVE_REBOUND_LABEL = "OREB";
+    public static final String DEFENSIVE_REBOUND_LABEL = "DREB";
+    public static final String TOTAL_REBOUND_LABEL = "REB";
+    public static final String ASSIST_LABEL = "AST";
+    public static final String STEAL_LABEL = "STL";
+    public static final String BLOCK_LABEL = "BLK";
+    public static final String TURN_OVER_LABEL = "TO";
+    public static final String PERSONAL_FOUL_LABEL = "PF";
+    public static final String CHARGE_TAKEN_LABEL = "CT";
+    public static final String POINTS_LABEL = "PTS";
 }

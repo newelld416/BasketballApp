@@ -22,7 +22,7 @@ public class DefensivePanel extends JPanel {
 
     public DefensivePanel(){
         int width = Constants.WIDTH / 2;
-        int height = (int) (Constants.HEIGHT * .3);
+        int height = (int) (Constants.HEIGHT * .2);
         this.setPreferredSize(new Dimension(width, height));// hardCoded sizing
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new GridLayout(2,3));

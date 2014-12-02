@@ -13,10 +13,12 @@ public class Utility {
     public static ObjectMapper mapper = new ObjectMapper();
 
     public static void saveEngine(Engine engine){
-        try {
-            mapper.writeValue(new File("PlayerData\\engine.json"), engine);
-        } catch ( Exception e ) {
-            e.printStackTrace();
+        if (engine != null) {
+            try {
+                mapper.writeValue(new File("PlayerData\\engine.json"), engine);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -31,29 +33,35 @@ public class Utility {
     }
 
     public static void SavePlayer(Player player){
-        try {
-            mapper.writeValue(new File("PlayerData\\" + getFileName(player) + ".json"), player);
-        } catch ( Exception e ) {
-            e.printStackTrace();
+        if (player != null){
+            try {
+                mapper.writeValue(new File("PlayerData\\" + getFileName(player) + ".json"), player);
+            } catch ( Exception e ) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static Player GetPlayer(Player player){
         Player returnPlayer = null;
-        try {
-            returnPlayer = mapper.readValue(new File("PlayerData\\" + getFileName(player) + ".json"), Player.class);
-        } catch ( Exception e ) {
-            e.printStackTrace();
+        if (player != null) {
+            try {
+                returnPlayer = mapper.readValue(new File("PlayerData\\" + getFileName(player) + ".json"), Player.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return returnPlayer;
     }
 
     public static Player GetPlayer(String fileName){
         Player returnPlayer = null;
-        try {
-            returnPlayer = mapper.readValue(new File("PlayerData\\" + fileName + ".json"), Player.class);
-        } catch ( Exception e ) {
-            System.out.println("Error:" + e.toString());
+        if (fileName != null && fileName != "") {
+            try {
+                returnPlayer = mapper.readValue(new File("PlayerData\\" + fileName + ".json"), Player.class);
+            } catch (Exception e) {
+                System.out.println("Error:" + e.toString());
+            }
         }
         return returnPlayer;
     }
@@ -69,15 +77,21 @@ public class Utility {
     }
 
     public static void saveSelectedPlayerFileName (Player player){
-        try {
-            mapper.writeValue(new File("PlayerData\\selectedPlayer.json"), getFileName(player));
-        } catch ( Exception e ) {
-            e.printStackTrace();
+        if (player != null) {
+            try {
+                mapper.writeValue(new File("PlayerData\\selectedPlayer.json"), getFileName(player));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     private static String getFileName(Player player){
-        return (player != null) ? player.getFirstName() + player.getLastName() + player.getNumber() + player.getTeamName() : "";
+        if (player != null) {
+            return (player != null) ? player.getFirstName() + player.getLastName() + player.getNumber() + player.getTeamName() : "";
+        } else {
+            return null;
+        }
     }
 }
 
