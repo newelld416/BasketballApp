@@ -7,14 +7,22 @@ import java.util.ArrayList;
  */
 public class Engine {
 
+    //Class Properties
     private ArrayList<Player> homePlayers;
     private ArrayList<Player> awayPlayers;
     private Player selectedPlayer;
 
-    public Engine (){
+    /**
+     * Engine empty constructor
+     * This is needed to work with the JSON convert library used (Jackson)
+     */
+    public Engine (){}
 
-    }
-
+    /**
+     * Engine constructor
+     * @param homePlayers
+     * @param awayPlayers
+     */
     public Engine (ArrayList<Player> homePlayers, ArrayList<Player> awayPlayers){
         this.homePlayers = homePlayers;
         this.awayPlayers = awayPlayers;

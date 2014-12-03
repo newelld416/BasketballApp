@@ -1,1 +1,1 @@
-Cavaliers,Lakers,Mavericks,Spurs
+Select a Team,Cavaliers,Lakers,Mavericks,Spurs

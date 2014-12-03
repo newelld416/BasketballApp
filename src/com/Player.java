@@ -29,10 +29,21 @@ public class Player extends Object{
     private int chargesTaken;
     private int personalFouls;
 
+    /**
+     * Empty Player Constructor
+     *  This is needed to work with the JSON convert library used (Jackson)
+     */
     public Player(){
 
     }
 
+    /**
+     * Player constructor
+     * @param firstName
+     * @param lastName
+     * @param number
+     * @param teamName
+     */
     public Player(String firstName, String lastName, int number, String teamName){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -56,6 +67,29 @@ public class Player extends Object{
         this.personalFouls = 0;
     }
 
+    /**
+     * Player Constructor
+     * @param firstName
+     * @param lastName
+     * @param number
+     * @param teamName
+     * @param totalPoints
+     * @param fieldGoalsAttempted
+     * @param fieldGoalsMade
+     * @param threePointersAttempted
+     * @param threePointersMade
+     * @param freeThrowsAttempted
+     * @param freeThrowsMade
+     * @param offensiveRebounds
+     * @param defensiveRebounds
+     * @param assists
+     * @param steals
+     * @param fouls
+     * @param turnovers
+     * @param blocks
+     * @param chargesTaken
+     * @param personalFouls
+     */
     public Player(String firstName,
                   String lastName,
                   int number,

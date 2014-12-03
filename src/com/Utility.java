@@ -20,7 +20,7 @@ public class Utility {
     public static void saveEngine(Engine engine){
         if (engine != null) {
             try {
-                mapper.writeValue(new File("Data\\PlayerData\\engine.json"), engine);
+                mapper.writeValue(new File(Constants.ENGINE_FILE_PATH), engine);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -30,14 +30,14 @@ public class Utility {
     public static Engine getEngine(){
         Engine engine = null;
         try {
-            engine = mapper.readValue(new File("Data\\PlayerData\\engine.json"), Engine.class);
+            engine = mapper.readValue(new File(Constants.ENGINE_FILE_PATH), Engine.class);
         } catch ( Exception e ) {
             e.printStackTrace();
         }
         return engine;
     }
 
-    public static void SavePlayer(Player player){
+    public static void savePlayer(Player player){
         if (player != null){
             try {
                 mapper.writeValue(new File("Data\\PlayerData\\" + getFileName(player) + ".json"), player);
@@ -47,25 +47,13 @@ public class Utility {
         }
     }
 
-    public static Player GetPlayer(Player player){
+    public static Player getPlayer(Player player){
         Player returnPlayer = null;
         if (player != null) {
             try {
                 returnPlayer = mapper.readValue(new File("Data\\PlayerData\\" + getFileName(player) + ".json"), Player.class);
             } catch (Exception e) {
                 e.printStackTrace();
-            }
-        }
-        return returnPlayer;
-    }
-
-    public static Player GetPlayer(String fileName){
-        Player returnPlayer = null;
-        if (fileName != null && fileName != "") {
-            try {
-                returnPlayer = mapper.readValue(new File("Data\\PlayerData\\" + fileName + ".json"), Player.class);
-            } catch (Exception e) {
-                System.out.println("Error:" + e.toString());
             }
         }
         return returnPlayer;
@@ -86,7 +74,7 @@ public class Utility {
         List<String> input = null;
         String[] output = null;
         try {
-            Path path = Paths.get("Data/TeamInfo/Teams.txt");
+            Path path = Paths.get(Constants.TEAM_FILE_PATH);
             input = Files.readAllLines(path, StandardCharsets.UTF_8);
             output = input.get(0).split(",");
         } catch (Exception e){
@@ -95,24 +83,8 @@ public class Utility {
         return output;
     }
 
-    public static String getSelectedPlayerFileName(){
-        SelectedPlayer selectedPlayer = null;
-        try {
-            selectedPlayer = mapper.readValue(new File("Data\\PlayerData\\selectedPlayer.json"), SelectedPlayer.class);
-        } catch ( Exception e ) {
-            e.printStackTrace();
-        }
-        return selectedPlayer.getSelectedPlayerFileName();
-    }
+    public static void saveBoxScore(){
 
-    public static void saveSelectedPlayerFileName (Player player){
-        if (player != null) {
-            try {
-                mapper.writeValue(new File("Data\\PlayerData\\selectedPlayer.json"), getFileName(player));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private static String getFileName(Player player){

@@ -14,6 +14,9 @@ public class BoxScore  extends JPanel {
     private int width, height;
     private JButton gameOverButton;
 
+    /**
+     * Box Score properties
+     */
     public BoxScore (){
         width = Constants.WIDTH;
         height = (int) (Constants.HEIGHT * .05);
@@ -32,11 +35,11 @@ public class BoxScore  extends JPanel {
 
                 frame = addTitleRow(frame);
                 for(Player play : homePlayers){
-                    frame = addPlayerInfo(Utility.GetPlayer(play), frame);
+                    frame = addPlayerInfo(Utility.getPlayer(play), frame);
                 }
                 frame = addTitleRow(frame);
                 for(Player play : awayPlayers){
-                    frame = addPlayerInfo(Utility.GetPlayer(play), frame);
+                    frame = addPlayerInfo(Utility.getPlayer(play), frame);
                 }
 
                 frame.setTitle(Constants.TITLE);
@@ -52,6 +55,11 @@ public class BoxScore  extends JPanel {
         this.add(gameOverButton, BorderLayout.CENTER);
     }
 
+    /**
+     * Adds the header row labels
+     * @param frame
+     * @return
+     */
     private JFrame addTitleRow(JFrame frame){
         ArrayList<JLabel> labels = new ArrayList<JLabel>();
         labels.add(new JLabel(Constants.PLAYER_NAME_LABEL));
@@ -71,8 +79,7 @@ public class BoxScore  extends JPanel {
         labels.add(new JLabel(Constants.POINTS_LABEL));
 
         for (JLabel label : labels){
-            Font boldFont = new Font(label.getFont().getFontName(), Font.BOLD, label.getFont().getSize() + 4);
-            label.setFont(boldFont.deriveFont(boldFont.getStyle() | Font.CENTER_BASELINE));
+            label.setFont(new Font(label.getFont().getFontName(), Font.BOLD, label.getFont().getSize() + 4));
             label.setHorizontalAlignment(SwingConstants.CENTER);
             label.setToolTipText(getTootTipString(label.getText()));
             frame.add(label);
@@ -80,6 +87,12 @@ public class BoxScore  extends JPanel {
         return frame;
     }
 
+    /**
+     * Adds the player statistical information
+     * @param player
+     * @param frame
+     * @return
+     */
     private JFrame addPlayerInfo(Player player, JFrame frame){
         if (player != null){
             ArrayList<JLabel> labels = new ArrayList<JLabel>();
@@ -111,6 +124,11 @@ public class BoxScore  extends JPanel {
         return frame;
     }
 
+    /**
+     * Sets the correct tool tips for the header labels
+     * @param label
+     * @return
+     */
     private String getTootTipString(String label){
         if (label.equals(Constants.PLAYER_NAME_LABEL)){
             return Constants.PLAYER_NAME_LABEL;

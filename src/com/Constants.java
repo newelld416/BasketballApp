@@ -8,8 +8,6 @@ public class Constants {
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 1000;
     public static final String TITLE = "Basketball Stat Tracker";
-    public static final String HOME_TEAM_LABEL = "Home Team";
-    public static final String AWAY_TEAM_LABEL = "Away Team";
     public static final String ONE_POINT_LABEL = "Free Throw Attempted";
     public static final String TWO_POINT_LABEL = "Field Goal Attempted";
     public static final String THREE_POINT_LABEL = "Three Point Field Goal Attempted";
@@ -22,7 +20,16 @@ public class Constants {
     public static final String OFFENSIVE_REBOUND_BUTTON_LABEL = " Offensive Rebound";
     public static final String TURNOVER_BUTTON_LABEL = "Turn over";
     public static final String GAME_OVER_LABEL = "Show Box Score";
+    public static final String GAME_OVER_BUTTON_LABEL = "GAME OVER";
     public static final String BOX_SCORE_TITLE = "Box Score";
+    public static final String SELECT_A_PLAYER_MESSAGE = "Please select a player.";
+    public static final String SELECT_A_PLAYER_TITLE = "Select a Player";
+    public static final String SHOT_MESSAGE = "Was the shot made.";
+    public static final String SHOT_TITLE = "Shot outcome";
+    public static final String ENGINE_FILE_PATH = "Data\\PlayerData\\engine.json";
+    public static final String TEAM_FILE_PATH = "Data/TeamInfo/Teams.txt";
+
+
 
     //Box Score Labels
     public static final String PLAYER_NAME_LABEL = "Player Name";
@@ -41,7 +48,6 @@ public class Constants {
     public static final String CHARGE_TAKEN_LABEL = "CT";
     public static final String POINTS_LABEL = "PTS";
 
-    public static final String PLAYER_NAME_TOOL_TIP = "Player Name";
     public static final String NUMBER_TOOL_TIP = "Player Number";
     public static final String FIELD_GOALS_TOOL_TIP = "Field Goals Made - Field Goals Attempted";
     public static final String THREE_POINTER_TOOL_TIP = "Three Pointers Made - Three Pointers Attempted";

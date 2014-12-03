@@ -12,16 +12,12 @@ import java.util.ArrayList;
 public class TeamPanel extends JPanel {
 
     private ButtonGroup allPlayersButtonGroup = new ButtonGroup();
-    private int width, height;
-    private String homeTeamName;
-    private String awayTeamName;
+    private String homeTeamName, awayTeamName;
 
     public TeamPanel(String homeTeam, String awayTeam){
-        width = Constants.WIDTH;
-        height = (int) (Constants.HEIGHT * .5);
         homeTeamName = homeTeam;
         awayTeamName = awayTeam;
-        this.setPreferredSize(new Dimension(width, height));
+        this.setPreferredSize(new Dimension(Constants.WIDTH, ((int) (Constants.HEIGHT * .5))));
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createRaisedBevelBorder());
 
@@ -35,7 +31,7 @@ public class TeamPanel extends JPanel {
         team.setHorizontalAlignment(SwingConstants.CENTER);
         team.setFont(new Font("Verdana", Font.BOLD, 24));
         panel.add(team);
-        panel.setPreferredSize(new Dimension(width / 2, height));
+        panel.setPreferredSize(new Dimension(Constants.WIDTH / 2, ((int) (Constants.HEIGHT * .5))));
         panel.setLayout(new GridLayout(players.size() + 3,1));
 
         //Add players to buttons
@@ -46,7 +42,7 @@ public class TeamPanel extends JPanel {
             button.setHorizontalAlignment(SwingConstants.CENTER);
             panel.add(button);
             allPlayersButtonGroup.add(button);
-            Utility.SavePlayer(player);
+            Utility.savePlayer(player);
         }
 
         this.add(panel, placement);
@@ -68,10 +64,6 @@ public class TeamPanel extends JPanel {
 
         private Player getPlayer() {
             return player;
-        }
-
-        private void setPlayer(Player player) {
-            this.player = player;
         }
     }
 }

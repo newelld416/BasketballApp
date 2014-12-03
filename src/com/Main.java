@@ -8,9 +8,12 @@ import java.util.List;
 public class Main extends JFrame{
 
     private Container content;
-    private static String homeTeamName;
-    private static String awayTeamName;
+    private static String homeTeamName = "Select a Player";
+    private static String awayTeamName = "Select a Player";
 
+    /**
+     * Main Constructor
+     */
     public Main (){
         setTitle(Constants.TITLE);
         setSize((int) (Constants.WIDTH * 1.02) , Constants.HEIGHT);
@@ -26,6 +29,10 @@ public class Main extends JFrame{
         setVisible(true);
     }
 
+    /**
+     * This method drives the creation of the initial GUI as well as selecting the teams
+     * @param args
+     */
     public static void main(String[] args) {
         ArrayList<Player> homePlayers = new ArrayList<Player>();
         ArrayList<Player> awayPlayers = new ArrayList<Player>();
@@ -38,7 +45,7 @@ public class Main extends JFrame{
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 choices,
-                choices[1]);
+                choices[0]);
 
         awayTeamName = (String) JOptionPane.showInputDialog(
                 null,
@@ -47,7 +54,7 @@ public class Main extends JFrame{
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 choices,
-                choices[1]);
+                choices[0]);
 
         List<String> homeInfo = Utility.getTeamPlayerInfo(homeTeamName);
         for (String playerInfo : homeInfo){
