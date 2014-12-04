@@ -117,13 +117,13 @@ public class Utility {
         output.add("Home team");
         for(Player player : homePlayers){
             Player upToDatePlayer = Utility.getPlayer(player);
-            output.add(player.toString());
+            output.add(upToDatePlayer.toString());
         }
 
         output.add("Away team");
         for(Player player : awayPlayers){
             Player upToDatePlayer = Utility.getPlayer(player);
-            output.add(player.toString());
+            output.add(upToDatePlayer.toString());
         }
 
         try {
@@ -132,6 +132,8 @@ public class Utility {
         } catch (Exception e){
             System.out.println("Exception: " + e.toString());
         }
+
+        System.exit(0);
     }
 
     /**

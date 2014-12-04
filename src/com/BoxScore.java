@@ -40,7 +40,7 @@ public class BoxScore  extends JPanel {
                 }
 
                 frame.setTitle(Constants.TITLE);
-                frame.setSize(1500, 1200);
+                frame.setSize(1500, 750);
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 content = frame.getContentPane();
                 content.setLayout(new GridLayout(homePlayers.size() + awayPlayers.size() + 2, 15));

@@ -5,8 +5,8 @@ package com;
  */
 public class Constants {
 
-    public static final int WIDTH = 1000;
-    public static final int HEIGHT = 1000;
+    public static final int WIDTH = 750;
+    public static final int HEIGHT = 725;
     public static final String TITLE = "Basketball Stat Tracker";
     public static final String ONE_POINT_LABEL = "Free Throw Attempted";
     public static final String TWO_POINT_LABEL = "Field Goal Attempted";
