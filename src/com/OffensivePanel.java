@@ -12,7 +12,7 @@ public class OffensivePanel extends JPanel {
 
     private JButton one_point_button, two_point_button, three_point_button, assist_button,rebound_button, turnover_button;
 
-
+    //Valid button types
     private enum ButtonType {
         OffensiveRebound,
         Score,
@@ -20,29 +20,29 @@ public class OffensivePanel extends JPanel {
         Turnover
     }
 
+    /**
+     * Offensive Panel Constructor
+     */
     public OffensivePanel(){
         this.setPreferredSize(new Dimension((Constants.WIDTH / 2), ((int) (Constants.HEIGHT * .1))));
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new GridLayout(2,3));
 
+        //Initialize Buttons
         one_point_button = new JButton(Constants.ONE_POINT_LABEL);
         one_point_button.addActionListener(new ButtonAction(1, ButtonType.Score));
-
         two_point_button = new JButton(Constants.TWO_POINT_LABEL);
         two_point_button.addActionListener(new ButtonAction(2, ButtonType.Score));
-
         three_point_button = new JButton(Constants.THREE_POINT_LABEL);
         three_point_button.addActionListener(new ButtonAction(3, ButtonType.Score));
-
         assist_button = new JButton(Constants.ASSIST_BUTTON_LABEL);
         assist_button.addActionListener(new ButtonAction(ButtonType.Assist));
-
         rebound_button = new JButton(Constants.OFFENSIVE_REBOUND_BUTTON_LABEL);
         rebound_button.addActionListener(new ButtonAction(ButtonType.OffensiveRebound));
-
         turnover_button = new JButton(Constants.TURNOVER_BUTTON_LABEL);
         turnover_button.addActionListener(new ButtonAction(ButtonType.Turnover));
 
+        //Adds button components to the panel
         this.add(one_point_button);
         this.add(two_point_button);
         this.add(three_point_button);
@@ -51,6 +51,9 @@ public class OffensivePanel extends JPanel {
         this.add(turnover_button);
     }
 
+    /**
+     * This is the button action used
+     */
     class ButtonAction implements ActionListener{
         private int points;
         private String buttonType;
@@ -84,6 +87,12 @@ public class OffensivePanel extends JPanel {
 
         }
 
+        /**
+         * This private method deals with recording player points as well as shot attempts
+         * @param player
+         * @param points
+         * @return
+         */
         private Player setPlayerPoints(Player player, int points){
             int response = JOptionPane.showConfirmDialog(null, Constants.SHOT_MESSAGE, Constants.SHOT_TITLE, JOptionPane.YES_NO_CANCEL_OPTION);
             if (response == JOptionPane.YES_OPTION || response == JOptionPane.NO_OPTION) {

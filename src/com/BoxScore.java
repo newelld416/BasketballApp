@@ -11,22 +11,19 @@ import java.util.ArrayList;
  */
 public class BoxScore  extends JPanel {
 
-    private int width, height;
-    private JButton gameOverButton;
+    private JButton boxScoreButton;
 
     /**
      * Box Score properties
      */
     public BoxScore (){
-        width = Constants.WIDTH;
-        height = (int) (Constants.HEIGHT * .05);
-        this.setPreferredSize(new Dimension(width, height));
+        this.setPreferredSize(new Dimension(Constants.WIDTH, ((int) (Constants.HEIGHT * .05))));
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        gameOverButton = new JButton(Constants.GAME_OVER_LABEL);
-        gameOverButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+        boxScoreButton = new JButton(Constants.BOX_SCORE_BUTTON_LABEL);
+        boxScoreButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 Container content;
                 JFrame frame = new JFrame(Constants.BOX_SCORE_TITLE);
                 Engine engine = Utility.getEngine();
@@ -34,11 +31,11 @@ public class BoxScore  extends JPanel {
                 ArrayList<Player> awayPlayers = engine.getAwayPlayers();
 
                 frame = addTitleRow(frame);
-                for(Player play : homePlayers){
+                for (Player play : homePlayers) {
                     frame = addPlayerInfo(Utility.getPlayer(play), frame);
                 }
                 frame = addTitleRow(frame);
-                for(Player play : awayPlayers){
+                for (Player play : awayPlayers) {
                     frame = addPlayerInfo(Utility.getPlayer(play), frame);
                 }
 
@@ -52,7 +49,7 @@ public class BoxScore  extends JPanel {
 
         });
 
-        this.add(gameOverButton, BorderLayout.CENTER);
+        this.add(boxScoreButton, BorderLayout.CENTER);
     }
 
     /**
@@ -158,9 +155,8 @@ public class BoxScore  extends JPanel {
             return Constants.PERSONAL_FOUL_TOOL_TIP;
         } else if (label.equals(Constants.CHARGE_TAKEN_LABEL)){
             return Constants.CHARGE_TAKEN_TOOL_TIP;
-        } else if (label.equals(Constants.POINTS_LABEL)){
+        } else {
             return Constants.POINTS_TOOL_TIP;
         }
-        return "";
     }
 }

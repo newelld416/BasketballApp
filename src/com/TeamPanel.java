@@ -25,6 +25,12 @@ public class TeamPanel extends JPanel {
         createTeamPanel(Utility.getEngine().getAwayPlayers(), BorderLayout.LINE_END, awayTeamName);
     }
 
+    /**
+     * Creates an individual team panel for either the home or away team
+     * @param players
+     * @param placement
+     * @param teamLabel
+     */
     private void createTeamPanel(ArrayList<Player> players, String placement, String teamLabel){
         JPanel panel = new JPanel();
         JLabel team = new JLabel(teamLabel);
@@ -48,6 +54,9 @@ public class TeamPanel extends JPanel {
         this.add(panel, placement);
     }
 
+    /**
+     * This is the Button action used
+     */
     class ButtonAction implements ActionListener {
         private Player player;
 

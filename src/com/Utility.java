@@ -17,6 +17,10 @@ public class Utility {
 
     public static ObjectMapper mapper = new ObjectMapper();
 
+    /**
+     * This util method allows you to save the game Engine object
+     * @param engine
+     */
     public static void saveEngine(Engine engine){
         if (engine != null) {
             try {
@@ -27,6 +31,9 @@ public class Utility {
         }
     }
 
+    /**
+     * This util method allows you to access the game Engine object
+     */
     public static Engine getEngine(){
         Engine engine = null;
         try {
@@ -37,6 +44,9 @@ public class Utility {
         return engine;
     }
 
+    /**
+     * This util method allows you to save a player object to be accessed later
+     */
     public static void savePlayer(Player player){
         if (player != null){
             try {
@@ -47,6 +57,9 @@ public class Utility {
         }
     }
 
+    /**
+     * This util method allows you to access a Player Object that has been saved
+     */
     public static Player getPlayer(Player player){
         Player returnPlayer = null;
         if (player != null) {
@@ -59,6 +72,11 @@ public class Utility {
         return returnPlayer;
     }
 
+    /**
+     * This method gets the initial player data for a given team
+     * @param teamName
+     * @return
+     */
     public static List<String> getTeamPlayerInfo(String teamName){
         List<String> input = null;
         try {
@@ -70,6 +88,10 @@ public class Utility {
         return input;
     }
 
+    /**
+     * This method returns an array of available teams
+     * @return
+     */
     public static String[] getTeamInfo(){
         List<String> input = null;
         String[] output = null;
@@ -83,10 +105,18 @@ public class Utility {
         return output;
     }
 
+    /**
+     * This method saves the boxScore when the game is over
+     */
     public static void saveBoxScore(){
 
     }
 
+    /**
+     * This private method returns key that the player information will be saved under.
+     * @param player
+     * @return
+     */
     private static String getFileName(Player player){
         if (player != null) {
             return (player != null) ? player.getFirstName() + player.getLastName() + player.getNumber() + player.getTeamName() : "";

@@ -19,7 +19,7 @@ public class Constants {
     public static final String ASSIST_BUTTON_LABEL = "Assist";
     public static final String OFFENSIVE_REBOUND_BUTTON_LABEL = " Offensive Rebound";
     public static final String TURNOVER_BUTTON_LABEL = "Turn over";
-    public static final String GAME_OVER_LABEL = "Show Box Score";
+    public static final String BOX_SCORE_BUTTON_LABEL = "Show Box Score";
     public static final String GAME_OVER_BUTTON_LABEL = "GAME OVER";
     public static final String BOX_SCORE_TITLE = "Box Score";
     public static final String SELECT_A_PLAYER_MESSAGE = "Please select a player.";

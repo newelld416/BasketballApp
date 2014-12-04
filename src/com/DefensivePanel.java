@@ -12,6 +12,7 @@ public class DefensivePanel extends JPanel {
 
     private JButton steal_button, block_button, rebound_button, charge_taken_button, personal_foul_button, game_over_button;
 
+    //Valid button types
     private enum ButtonType {
         Steal,
         Block,
@@ -29,6 +30,7 @@ public class DefensivePanel extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new GridLayout(2,3));
 
+        //Initialize Buttons
         steal_button = new JButton(Constants.STEAL_BUTTON_LABEL);
         steal_button.addActionListener(new ButtonAction(ButtonType.Steal));
         block_button = new JButton(Constants.BLOCK__BUTTON_LABEL);
@@ -43,6 +45,7 @@ public class DefensivePanel extends JPanel {
         game_over_button.addActionListener(new ButtonAction(ButtonType.GameOver));
         game_over_button.setFont(new Font(game_over_button.getFont().getFontName(), Font.BOLD, game_over_button.getFont().getSize() + 4));
 
+        //Adds button components to the panel
         this.add(steal_button);
         this.add(block_button);
         this.add(rebound_button);
@@ -51,6 +54,9 @@ public class DefensivePanel extends JPanel {
         this.add(game_over_button);
     }
 
+    /**
+     * This is the button action used
+     */
     class ButtonAction implements ActionListener {
         private String buttonType;
 
