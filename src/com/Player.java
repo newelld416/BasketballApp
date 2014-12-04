@@ -291,4 +291,30 @@ public class Player extends Object{
     public void setPersonalFouls(int personalFouls) {
         this.personalFouls = personalFouls;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(getFirstName() + "-");
+        sb.append(getLastName() + "-");
+        sb.append(getNumber() + ",");
+        sb.append(getTotalPoints() + ",");
+        sb.append(getFieldGoalsAttempted() + ",");
+        sb.append(getFieldGoalsMade() + ",");
+        sb.append(getThreePointersAttempted() + ",");
+        sb.append(getThreePointersMade() + ",");
+        sb.append(getFreeThrowsAttempted() + ",");
+        sb.append(getFreeThrowsMade() + ",");
+        sb.append(getOffensiveRebounds() + ",");
+        sb.append(getDefensiveRebounds() + ",");
+        sb.append(getAssists() + ",");
+        sb.append(getSteals() + ",");
+        sb.append(getFouls() + ",");
+        sb.append(getTurnovers() + ",");
+        sb.append(getBlocks() + ",");
+        sb.append(getChargesTaken() + ",");
+        sb.append(getPersonalFouls());
+        return sb.toString();
+    }
+
 }

@@ -67,7 +67,7 @@ public class DefensivePanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             Player player = Utility.getPlayer(Utility.getEngine().getSelectedPlayer());
-            if (player != null) {
+            if (player != null || buttonType == ButtonType.GameOver.toString()) {
                 if (buttonType == ButtonType.Steal.toString()) {
                     player.setSteals(player.getSteals() + 1);
                 } else if (buttonType == ButtonType.Block.toString()) {

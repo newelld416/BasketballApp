@@ -28,6 +28,7 @@ public class Constants {
     public static final String SHOT_TITLE = "Shot outcome";
     public static final String ENGINE_FILE_PATH = "Data\\PlayerData\\engine.json";
     public static final String TEAM_FILE_PATH = "Data/TeamInfo/Teams.txt";
+    public static final String OUTPUT_FILE_PATH = "Data/Output/BoxScore.txt";
 
 
 

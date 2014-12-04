@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -109,7 +110,28 @@ public class Utility {
      * This method saves the boxScore when the game is over
      */
     public static void saveBoxScore(){
+        Engine engine = Utility.getEngine();
+        ArrayList<Player> homePlayers = engine.getHomePlayers();
+        ArrayList<Player> awayPlayers = engine.getAwayPlayers();
+        ArrayList<String> output = new ArrayList<String>();
+        output.add("Home team");
+        for(Player player : homePlayers){
+            Player upToDatePlayer = Utility.getPlayer(player);
+            output.add(player.toString());
+        }
 
+        output.add("Away team");
+        for(Player player : awayPlayers){
+            Player upToDatePlayer = Utility.getPlayer(player);
+            output.add(player.toString());
+        }
+
+        try {
+            Path path = Paths.get(Constants.OUTPUT_FILE_PATH);
+            Files.write(path,output,StandardCharsets.UTF_8);
+        } catch (Exception e){
+            System.out.println("Exception: " + e.toString());
+        }
     }
 
     /**
